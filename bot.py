@@ -6,7 +6,7 @@ from threading import Thread
 import os
 
 
-TOKEN = "мой токен"
+TOKEN = "8868945592:AAHpLm289ReHpZ4JybNZsUlUr8b41Khf0Oc"
 ADMIN_ID = 8502272769
 
 NAME, PHONE, ORDER = range(3)
