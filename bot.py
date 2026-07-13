@@ -1,11 +1,35 @@
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes, ConversationHandler
 
-TOKEN = "8868945592:AAHpLm289ReHpZ4JybNZsUlUr8b41Khf0Oc"
+from flask import Flask
+from threading import Thread
+import os
+
+
+TOKEN = "мой токен"
 ADMIN_ID = 8502272769
 
 NAME, PHONE, ORDER = range(3)
 
+
+# ===== Render Web Server =====
+
+web_app = Flask(__name__)
+
+@web_app.route("/")
+def home():
+    return "Zohidovs Parfum Bot is running!"
+
+def run_web():
+    web_app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 10000))
+    )
+
+Thread(target=run_web).start()
+
+
+# ===== Telegram Bot =====
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
